@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+  <head>
+	<title>ISS Info</title>
+  </head>
+  <body>
+  <p>{{ status_code }}</p>
+  <p>{{ iss_position }}</p>
+  <p>{{ name_astros }}</p>
+  <p>At {{ nice_time }} the ISS was passing over {{ iss_address }}</p>
+  <p>The next five times the ISS will pass over {{ address }} are:</p>
+  
+  {% for passing in nice_risetimes %}
+	<ul>
+  
+	<li>{{ passing }}</li>
+	</ul>
+	{% endfor %}
+  <p>There are currently {{ num_astros }} people in space. They are:</p>
+  <ul>
+  {% for name in name_list %}
+	<li>{{ name }}</li>
+	{% endfor %}
+	</ul>
+  
+ 
+  </body>
+ </html>

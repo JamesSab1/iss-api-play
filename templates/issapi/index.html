@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ISS Info</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+   integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+   crossorigin=""/>
+   <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+   integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+   crossorigin=""></script>
+  
+  </head>
+<body>
+
+<div class="container-fluid">
+  <h1>ISS Info</h1>
+  <p>Information from the Open Notify API</p>
+  <div class="row">
+    <div class="col-sm-4" style="background-color:lavender;">
+		<p>At {{ nice_time }} the ISS was passing over {{ iss_address }}</p>	
+	</div>
+    <div class="col-sm-4" style="background-color:lavenderblush;">
+	
+	<form action="{% url 'index' %}" method="POST">
+		{% csrf_token %}
+		<label for="search">Search:</label>
+		<input type="text" id="search" name="pass_address">
+		<button type="submit">Search</button>
+	</form>
+	
+		<p>The next five times the ISS will pass over {{ pass_address.title }} are:</p>
+  
+		{% for passing in nice_risetimes %}
+		<ul>
+  
+		<li>{{ passing }}</li>
+		</ul>
+		{% endfor %}
+	</div>
+    <div class="col-sm-4" style="background-color:lavender;">
+		<p>There are currently {{ num_astros }} people in space. They are:</p>
+		<ul>
+		{% for name in name_list %}
+		<li>{{ name }}</li>
+		{% endfor %}
+		</ul>
+	</div>
+  </div>
+</div>
+
+</body>
+</html>
