@@ -3,7 +3,7 @@ chardet==3.0.4
 dj-database-url==0.4.2
 dj-static==0.0.6
 Django==1.11.7
-geopy==1.11.0
+geopy==1.13.0
 gunicorn==19.7.1
 idna==2.6
 pytz==2017.3
